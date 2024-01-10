@@ -1,0 +1,20 @@
+---
+- name: Install Apache HTTP Server (httpd) on Ubuntu
+  hosts: all  # Replace with your target hosts or group name
+  tasks:
+    - name: Update the System Packages
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install Apache HTTP Server (httpd)
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start and Enable httpd service
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+        daemon_reload: yes
